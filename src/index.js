@@ -177,7 +177,7 @@ function App() {
               <FormGroup>
                 <Label for="contactPhone">Your Phone Number</Label>
                 <Input
-                  type="tel"
+                  type="number"
                   name="contactPhone"
                   id="contactPhone"
                   placeholder="1-(555)-555-5555"
