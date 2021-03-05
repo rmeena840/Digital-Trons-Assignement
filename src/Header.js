@@ -5,6 +5,8 @@ import {
 } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+/* Header for the page */
+
 const Header = () => {
     return (
         <>

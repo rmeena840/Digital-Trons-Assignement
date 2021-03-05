@@ -21,6 +21,7 @@ import "./styles.css";
 import Header from './Header';
 
 function App() {
+  /* useReducer for maintaing the state of slots */
   const [state, dispatch] = useReducer(
     (state, action) => {
       switch (action.type) {
@@ -81,6 +82,8 @@ function App() {
       timeslotID: null
     }
   );
+
+  /* application state of slots */
   const {
     timeslots,
     bookingModalStatus,
@@ -88,15 +91,18 @@ function App() {
     contactPhone
   } = state;
 
+  /* This function is called when modal is closed. */
   function onCloseBookingModal(e) {
     dispatch({ type: "closeBookingModal" });
   }
 
+  /* This function is called when modal is opened */
   function onOpenBookingModal(e) {
     const timeslotID = parseInt(e.target.getAttribute("data-timeslot-id"), 10);
     dispatch({ type: "openBookingModal", timeslotID });
   }
 
+  /* This function is called whenever there is any input change on modal. */
   function onFormFieldChange(e) {
     dispatch({
       type: "inputChange",
@@ -105,6 +111,7 @@ function App() {
     });
   }
 
+  /* This function is called to when user cicked on Save button on modal */
   function onBookTimeSlot(e) {
     e.preventDefault();
     if (contactName === "" || contactPhone === "") {
@@ -120,6 +127,7 @@ function App() {
       <Container className="App">
         <Row>
           {timeslots.map(({ id, startTime, endTime, booked }) => {
+            /* Slot is not booked */
             if (!booked) {
               return (
                 <Col sm={{ size: 8, offset: 2 }} key={id}>
@@ -136,6 +144,8 @@ function App() {
                 </Col>
               );
             }
+
+            /* slot is booked */
             return (
               <Col sm={{ size: 8, offset: 2 }} key={id}>
                 <Card body key={id} color="danger" outline>
